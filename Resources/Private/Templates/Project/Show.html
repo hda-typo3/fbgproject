@@ -1,0 +1,209 @@
+ <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/fluid/ViewHelpers"
+     xmlns:hda="http://typo3.org/ns/Hda/Fbgproject/ViewHelpers">
+
+	<div class="projectSingle">
+        <div class="row">
+            <div class="col-12 col-md-4">	     
+            
+                <span><strong>{project.degreecourse.title}</strong></span>               
+                                     
+				<h3>{project.title}</h3>	
+
+				<f:format.html>{project.description}</f:format.html>
+
+					<p class="lecturers"><strong>Betreuung: </strong>
+                          <f:if condition="{project.lecturers}">
+                              <f:then>
+                              	
+                                  <f:for each="{project.lecturers}" as="lecturer" iteration="iterator"> 
+                                      <f:if condition="{iterator.isLast}">      
+                                      
+                                          <f:then>       
+						                <f:if condition="{hda:Personalpage(key:'{lecturer.email}')} != ''">
+						                    <f:link.page pageUid="{hda:Personalpage(key:'{lecturer.email}')}" class="link-internal">{lecturer.name}</f:link.page><br />
+						                </f:if>   
+                                          </f:then>   
+                                          <f:else>    
+                                           <f:if condition="{hda:Personalpage(key:'{lecturer.email}')} != ''">
+                                               <f:link.page pageUid="{hda:Personalpage(key:'{lecturer.email}')}" class="link-internal">{lecturer.name}</f:link.page>,<br />
+                                           </f:if>
+                                          </f:else>
+
+                                      </f:if> 
+                                  </f:for>
+                              </f:then>
+                              <f:else>
+                                  {project.lecturersfreetext}
+                              </f:else>
+                          </f:if>
+                     </p> 
+
+                    <f:if condition="{project.students}">
+                        <f:then>
+                            <p class="students"><strong>Studierende: </strong>
+                                <f:for each="{project.students}" as="stud" iteration="iterator"> 
+                                     
+                                        <f:if condition="{iterator.isLast}">
+                                            <f:then>                
+                                                {stud.firstName} {stud.lastName}
+                                            </f:then>   
+                                            <f:else>                
+                                                {stud.firstName} {stud.lastName},<br /> 
+                                            </f:else>                                       
+                                        </f:if> 
+                                 </f:for>                                       
+							</p>
+                        </f:then>   
+                        <f:else>
+                             <f:if condition="{project.studentsfreetext}">
+                              	<f:then>
+                             		<p class="students"><strong>Studierende: </strong>
+	                                   {project.studentsfreetext} 
+                               		</p> 
+                                </f:then>
+                            </f:if>                             
+                        </f:else>
+                    </f:if>   
+                              
+                     <f:if condition="{project.category}">           
+                          <p><strong><f:translate key="category" />: </strong>{project.category.title}</p>                         
+                     </f:if>  
+                     
+                   <f:if condition="{project.degreecourse}">
+                         <p><strong><f:translate key="degreecourse" />: </strong>{project.degreecourse.title}</p>   
+                    </f:if>
+
+                    
+                    <f:if condition="{project.semester}">   
+                            <p><strong><f:translate key="semester" />: </strong>{project.semester.title}</p>     
+                   </f:if>
+                   <f:if condition="{project.date}">
+                         <p><strong><f:translate key="date" />: </strong>{project.date}</p>   
+                    </f:if>
+                    
+                    
+                    
+                    
+                    
+                        <f:if condition="{project.copartner}">  
+                            <p><strong><f:translate key="copartner" />: </strong>
+                            <f:if condition="{project.copartnerlink}">  
+                                <f:then>
+                                    <f:link.external class="link-external" uri="{project.copartnerlink}"  target="_blank">{project.copartner}</f:link.external>
+                                </f:then>
+                                <f:else>
+                                   {project.copartner}
+                                </f:else>   
+
+                            </f:if> 
+                            </p>                        
+                        </f:if>     
+                    
+
+      				<f:render section="back" arguments="{_all}"/>
+       		</div>
+            <div class="col-12 col-md-8">	
+
+				<f:if condition="{project.lightboxstyle} != '0'">
+		               <f:then>
+		                   <f:for each="{project.media}" as="images" >
+		                       <div class="lightboxstyle-{project.lightboxstyle}">
+		                           <figure class="image">
+		                               <a href="{images.originalResource.publicUrl}" rel="lightbox[<f:cObject typoscriptObjectPath='lib.pidi' />]" class="lightbox">
+		                               <f:if condition="{images.originalResource.type} == 2">
+		                                   <f:render section="picture" arguments="{_all}"/>
+		                               </f:if>
+		                               </a>
+		                               <f:if condition="{images.originalResource.type} == 3">
+		                                   wert: {images.originalResource.type}
+		                               </f:if>
+		                               <f:if condition="{images.originalResource.type} == 4">
+		                                   <f:render section="video" arguments="{_all}"/>
+		                               </f:if>
+		                               <f:if condition="{images.originalResource.type} == 5">
+		                                   wert: {images.originalResource.type}
+		                               </f:if>
+		                               
+		                           </figure>
+		                       </div>
+		                   </f:for>
+		               </f:then>
+		               <f:else>    
+		                   <f:for each="{project.media}" as="images" >
+		                               <f:if condition="{mediaElement.originalResource.type} == 2">
+		                                   <f:render section="picture" arguments="{_all}"/>
+		                               </f:if>
+		                               <f:if condition="{mediaElement.originalResource.type} == 3">
+		                                   wert: {mediaElement.originalResource.type}
+		                               </f:if>
+		                               <f:if condition="{mediaElement.originalResource.type} == 4">
+		                                   <f:render section="video" arguments="{_all}"/>
+		                               </f:if>
+		                               <f:if condition="{mediaElement.originalResource.type} == 5">
+		                                   wert: {mediaElement.originalResource.type}
+		                               </f:if>
+		                   </f:for>
+		               </f:else>
+		           </f:if>
+            
+            </div>
+       </div>	
+  </div>
+ 
+
+    <f:section name="picture">
+        <picture>
+             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '2560')}"  media="(min-width: 1841px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '2560')}"  media="(min-width: 1841px)" type="image/jpeg">
+             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1840')}"  media="(min-width: 1441px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1840')}"  media="(min-width: 1441px)" type="image/jpeg">            
+                             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1440')}"  media="(min-width: 1281px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1440')}"  media="(min-width: 1281px)" type="image/jpeg">            
+             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1280')}"  media="(min-width: 993px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '1280')}"  media="(min-width: 993px)" type="image/jpeg">        
+                     
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '992')}"   media="(min-width: 769px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '992')}"   media="(min-width: 769px)" type="image/jpeg"> 
+             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '768')}"   media="(min-width: 641px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '768')}"   media="(min-width: 641px)" type="image/jpeg">
+             
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '640')}"   media="(min-width: 361px)" type="image/wepb">
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '640')}"   media="(min-width: 361px)" type="image/jpeg">
+                    
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '360')}"  type="image/wepb">        
+             <source srcset="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default', width: '360')}"  type="image/jpeg">    
+
+            <img src="{f:uri.image(src:'{images.uid}', treatIdAsReference:'1', cropVariant: 'default')}"
+            {f:if(condition: '{image.title}', then: 'title="{image.title}"')}
+            {f:if(condition: '{image.alternative}', then: 'alt="{image.alternative}"')}  role="presentation" 
+            loading="lazy"
+             />
+                          
+             
+        </picture>
+    </f:section>  
+   
+   
+    <f:section name="video">
+		<div class="mediaelement-video">
+			<f:media file="{images}" width="540px" height="405px"/>
+		</div>
+    </f:section>  
+    
+
+ 
+    <f:section name="back">
+        <p class="btn btn-secondary levelBack my-3"><f:link.external  uri="javascript:history.back();">Back</f:link.external></p>
+    </f:section>
+   
+    <f:section name="debug">
+        {_all -> f:debug(inline:1)}
+    </f:section>
+
+</html>

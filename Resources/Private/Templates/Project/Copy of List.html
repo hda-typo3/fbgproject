@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+    <f:section name="content">
+        <f:if condition="{f:count(subject: projects)} > 3">
+            <f:then>
+                <div class="FbgprojectSlideshow w-100 t3up_slider sliderstyle-{bootstrapslider}">
+	               <div id="Slideshow{contentObjectData.uid}" class="threeItems carousel slide" data-ride="carousel" data-bs-ride="carousel" data-interval="{settings.carouselSpeed}">
+	                   <div class="carousel-inner" role="listbox">
+	                      <f:for each="{projects}" as="project" iteration="iterator">
+	                           <f:render partial="Project/SlideshowThreeItem" arguments="{project:project, settings:settings, iterator:iterator}" />
+	                       </f:for>     
+	                   </div> 
+	                   <!-- Left and right controls -->
+	                  <div class="direction"> 
+	                      <a class="carousel-control-prev" href="#Slideshow{contentObjectData.uid}" data-bs-target="#Slideshow{contentObjectData.uid}" type="button" data-slide="prev"  data-bs-slide="prev">
+	                        <span class="symbol chevron-left">&#xF104</span>
+	                        <span class="sr-only visually-hidden">Previous</span>
+	                       </a>
+	                      <a class="carousel-control-next" href="#Slideshow{contentObjectData.uid}" data-bs-target="#Slideshow{contentObjectData.uid}" type="button" data-slide="next"  data-bs-slide="next">
+	                        <span class="symbol chevron-right">&#xF105</span>
+	                        <span class="sr-only visually-hidden">Next</span>
+	                      </a>
+	                  </div>  
+		           </div>
+	        	</div>
+	        </f:then>
+	        <f:else> 
+	          <div class="FbgprojectSlideshow w-100 d-flex t3up_slider">      
+                <f:for each="{projects}" as="project" iteration="iterator">
+                     <f:render partial="Project/SlideshowThreeItemStat" arguments="{project:project, settings:settings}" />
+                 </f:for> 
+                </div>       
+	        </f:else>        
+	     </f:if>
+     </f:section>
+</html>
