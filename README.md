@@ -1,1 +1,1 @@
-First Release of the Project Extension
+First Release of the Project-Extension
