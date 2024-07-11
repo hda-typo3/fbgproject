@@ -1,0 +1,39 @@
+<ProjectStructur>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject.sheet</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                
+                <el>
+
+                    <settings.lecturer>
+                        <TCEforms>
+                            <label>LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject.lecteurs</label>
+                            <config>
+                                <renderType>selectSingle</renderType>
+                                <type>select</type>
+                                <itemsProcFunc>Hda\Fbgproject\Service\FlexFormService->lecteurs</itemsProcFunc>
+                                <renderType>selectMultipleSideBySide</renderType>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">---</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                </items>
+                                <size>10</size>
+                                <multiple>0</multiple>
+                                <maxitems>50</maxitems>
+                                <enableMultiSelectFilterTextfield>FALSE</enableMultiSelectFilterTextfield>
+                            </config>
+                        </TCEforms>
+                    </settings.lecturer>  
+                    
+
+                </el>          
+            </ROOT>
+        </sDEF>
+    </sheets>
+</ProjectStructur>

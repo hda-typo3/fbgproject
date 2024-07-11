@@ -1,0 +1,23 @@
+mod.wizards.newContentElement.wizardItems.plugins {
+	elements {
+		project1 {
+			iconIdentifier = fbgproject-plugin-1
+			title = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject_project1.title
+			description = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject_project1.description
+			tt_content_defValues {
+				CType = list
+				list_type = fbgproject_project1
+			}
+		}
+		project3 {
+			iconIdentifier = fbgproject-plugin-3
+			title = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject_project3.title
+			description = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject_project3.description
+			tt_content_defValues {
+				CType = list
+				list_type = fbgproject_project3
+			}
+		}
+		
+	}
+}

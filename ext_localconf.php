@@ -1,7 +1,10 @@
 <?php
-defined('TYPO3') || die();
 
-(static function() {
+defined('TYPO3') || die('Access denied.');
+
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+call_user_func(static function () {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'Fbgproject',
         'Project1',
@@ -28,13 +31,10 @@ defined('TYPO3') || die();
     
 
     /* ==  Add TSconfig ============================================ */
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fbgproject/Configuration/TsConfig/Page/Mod/Wizards/NewContentElement.typoscript">');
+    ExtensionManagementUtility::addPageTSConfig("@import 'EXT:fbgproject/Configuration/TsConfig/Page/Mod/Wizards/NewContentElement.tsconfig'");
     
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fbgproject/Configuration/TsConfig/Templates.typoscript">');
-    
-   
+	ExtensionManagementUtility::addPageTSConfig("@import 'EXT:fbgproject/Configuration/TsConfig/Templates.tsconfig'");
+
     $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
     
     $iconRegistry->registerIcon(
@@ -55,5 +55,4 @@ defined('TYPO3') || die();
         ['source' => 'EXT:fbgproject/Resources/Public/Icons/fbgproject-plugin-3.svg']
         );
     
-
-})();
+    });

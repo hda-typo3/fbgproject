@@ -1,0 +1,36 @@
+	
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:fbgproject/Configuration/TypoScript/Content/" extensions="typoscript">
+
+plugin.tx_fbgproject_project {
+    view {
+        templateRootPaths.0 = EXT:fbgproject/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_fbgproject_project.view.templateRootPath}
+        partialRootPaths.0 = EXT:fbgproject/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_fbgproject_project.view.partialRootPath}
+        layoutRootPaths.0 = EXT:fbgproject/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_fbgproject_project.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_fbgproject_project.persistence.storagePid}
+        #recursive = 1
+        classes {
+      		Hda\Fbgproject\Domain\Model\Lecturers {
+        		mapping {
+	          		tableName = fe_users
+	            	recordType = 0
+          		}
+        	}
+      	}        
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plugin are uncached
+        requireCHashArgumentForActionArguments = 1
+    }
+
+}
+
+
+page.includeCSS.fbgproject = {$plugin.tx_fbgproject_project.settings.scss} 

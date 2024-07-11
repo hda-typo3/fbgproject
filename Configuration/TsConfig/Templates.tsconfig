@@ -1,0 +1,7 @@
+# Die Templates für den Personendarstellung *******************************************
+
+tx_fbgproject.templateLayouts{
+        List 	  	        = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:list
+        Show                = LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:detail
+}
+

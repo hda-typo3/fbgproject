@@ -1,0 +1,26 @@
+<ProjectStructur>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:fbgproject/Resources/Private/Language/locallang_db.xlf:fbgproject.sheet</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                
+                <el>
+
+                   
+                <settings.target>
+                    <TCEforms>
+                        <label></label>
+                           <config>
+
+                        </config>
+                    </TCEforms>
+                </settings.target>
+
+                </el>          
+            </ROOT>
+        </sDEF>
+    </sheets>
+</ProjectStructur>

@@ -1,0 +1,19 @@
+
+plugin.tx_fbgproject_project {
+    view {
+        # cat=plugin.tx_fbgproject_project/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:fbgproject/Resources/Private/Templates/
+        # cat=plugin.tx_fbgproject_project/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:fbgproject/Resources/Private/Partials/
+        # cat=plugin.tx_fbgproject_project/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:fbgproject/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_fbgproject_project//a; type=string; label=Default storage PID
+        storagePid =
+    }
+    
+    settings{
+    	scss = EXT:fbgproject/Resources/Public/Sass/_projects.scss 
+    }
+}
